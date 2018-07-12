@@ -1,14 +1,17 @@
 #!/bin/bash
-#先判断是否有数字输入
+#编写运算阶乘的函数
+factorial(){
+   local n=$1
+   if [ $n -eq 0 ];then
+      let fac=1
+   else
+      factorial `expr $n - 1`
+      let fac=$n*$fac
+   fi
+}
 if [ -n "$1" ];then
 #若有数字输入，则进行阶乘计算
-   n=$1
-   fac=1
-   while [ $n -gt 0 ]
-   do
-      fac=$((fac * n))
-      n=$((n - 1))
-   done
+   factorial $1
    echo $fac
 #若没有数字输入，则按题中要求echo出下列语句
 else
